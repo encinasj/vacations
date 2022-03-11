@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+<!-- index -->
+<header class="page-header">
+  <nav>
+    <a href="#0" aria-label="forecastr logo" class="logo">
+      <img  width="140" height="49" src="https://cdn.logo.com/hotlink-ok/logo-social.png" alt="Logo">
+    </a>
+    <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
+      <svg width="20" height="20" aria-hidden="true">
+        <use xlink:href="#down"></use>
+      </svg>
+    </button>
+    <ul class="admin-menu">
+      <li class="menu-heading">
+        <h3>Vacaciones</h3>
+      </li>
+      <li>
+        <a href="#0">
+          <span>Micronegocio</span>
+        </a>
+      </li> 
+      <li>
+        <div class="switch">
+          <input type="checkbox" id="mode" checked>
+          <label for="mode">
+            <span></span>
+            <span>Dark</span>
+          </label>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
+<section class="page-content">
+  <section class="search-and-user">
+    <h3 id="colortext">Micronegocio</h3>
+  </section>
+  <section class="grid">
+    <article> 
+      <div class="microform">
+        <form action="">
+          <input class="addmicro" type="text" name="agregar" autocomplete="off" placeholder="agreagar micronegocio">
+          <button id="buttonsave" type="submit">guardar</button>
+        </form>
+      </div>
+    </article>
+    <div>
+      <h1 id="titlemicros">Micronegocios</h1>
+    </div>
+    <br>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="card card-1"><h4 id="titlemicros" >Micro1</h4></div>
+            </td>
+            <td>
+              <div class="card card-1"> <h4 id="titlemicros">Micro2</h4></div>
+            </td>
+            <td>
+              <div class="card card-1"> <h4 id="titlemicros">Micro3</h4></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</section>
+<!-- partial -->
+  <footer class="page-footer">
+    <span>made by </span>
+    <a href="#" target="_blank">
+      <h4> JEncinas</h4>
+    </a>
+  </footer>
+  <script  src="static/js/script.js"></script>
+  <h4>jencinas</h4>
+</body>
+</html>

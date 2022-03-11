@@ -4,7 +4,7 @@
 
 ### folder 
 migrations/
-__pycache__
+__pycache__/
 
 ### Images ###
 # JPEG

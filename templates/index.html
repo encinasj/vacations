@@ -45,10 +45,11 @@
   <section class="grid">
     <article> 
       <div class="microform">
-        <form action="">
-          <input class="addmicro" type="text" name="agregar" autocomplete="off" placeholder="agreagar micronegocio">
-          <button id="buttonsave" type="submit">guardar</button>
-        </form>
+        <form method="POST">
+            {{ form.csrf_token }}     
+              <input class="addmicro" type="text" name="name" autocomplete="off" required placeholder="agreagar micronegocio">
+              <button id="buttonsave" type="submit">guardar</button>
+          </form>
       </div>
     </article>
     <div>
@@ -63,18 +64,16 @@
             </th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="card card-1"><h4 id="titlemicros" >Micro1</h4></div>
-            </td>
-            <td>
-              <div class="card card-1"> <h4 id="titlemicros">Micro2</h4></div>
-            </td>
-            <td>
-              <div class="card card-1"> <h4 id="titlemicros">Micro3</h4></div>
-            </td>
-          </tr>
+        <tbody class="wrapper">
+          {%for empresa in listemp %}
+            <tr>
+              <td>
+                <div class="card card-1">
+                  <h4 id="titlemicros">{{empresa.name}}</h4>
+                </div>
+              </td>
+            </tr>
+          {%endfor%}
         </tbody>
       </table>
     </div>

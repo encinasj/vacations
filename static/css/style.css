@@ -66,6 +66,11 @@
   
 }
 
+.wrapper {
+  display: grid;
+  grid-template-columns: 350px 350px 200px;
+}
+
 .card {
   background: #fff;
   border-radius: 2px;

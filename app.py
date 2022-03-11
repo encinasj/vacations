@@ -1,21 +1,19 @@
-from flask import Flask
+from flask import Flask, redirect, request
 from flask import render_template, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-
 from .database import db
-from .models import empresas
-from .forms import *
+from .models import Empresas
+from .forms import EmpresasForm
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'llave secreta XD'
 db.init_app(app)
 
 migrate = Migrate()
 migrate.init_app(app, db)
 
+app.config['SECRET_KEY'] = 'llave secreta XD'
 #se infica cual es la url que usara para la conexion a la base de datos
 #credenciales de conecction
 db_user = 'jencinas'
@@ -37,10 +35,18 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 
-
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
+    listemp = Empresas.query.order_by('id')
+    empresa = Empresas()
+    empresaform = EmpresasForm(obj=empresa)
+    if request.method == 'POST':
+        if empresaform.validate_on_submit():
+            empresaform.populate_obj(empresa)
+            db.session.add(empresa)
+            db.session.commit()
+            return redirect(request.url)
+    return render_template('index.html', form=empresaform, listemp=listemp)
 
 
 if __name__ == "__main__":

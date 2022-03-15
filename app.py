@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request
+from flask import Flask, flash, redirect, request, url_for
 from flask import render_template, request, jsonify
 from flask_migrate import Migrate
 
@@ -13,7 +13,7 @@ db.init_app(app)
 migrate = Migrate()
 migrate.init_app(app, db)
 
-app.config['SECRET_KEY'] = 'llave secreta XD'
+app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
 #se infica cual es la url que usara para la conexion a la base de datos
 #credenciales de conecction
 db_user = 'jencinas'
@@ -40,14 +40,30 @@ def home():
     listemp = Empresas.query.order_by('id')
     empresa = Empresas()
     empresaform = EmpresasForm(obj=empresa)
-    if request.method == 'POST':
+    if request.method == 'POST' and empresaform.validate():
         if empresaform.validate_on_submit():
             empresaform.populate_obj(empresa)
             db.session.add(empresa)
             db.session.commit()
+            flash("Micronegocio Agregado!!")
+        else:
+            flash('There was a problem, Try again!...')
             return redirect(request.url)
     return render_template('index.html', form=empresaform, listemp=listemp)
 
+
+
+@app.route("/delete/<int:id>")
+def delete_company(id):
+    delete_to_company = Empresas.query.get_or_404(id)
+    try:
+        db.session.delete(delete_to_company)
+        db.session.commit()
+        flash("Micronegocio Eliminado!!")
+        return redirect(url_for('home'))
+    except:
+        flash("whoops there was a problem!! try again!..")
+        return redirect(url_for('home'))
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port='9000', debug=True)

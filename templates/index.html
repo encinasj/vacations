@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard</title>
+  <link rel="icon" href="{{ url_for('static', filename='img/preparation.png') }}">
   <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
@@ -41,13 +42,30 @@
 <section class="page-content">
   <section class="search-and-user">
     <h3 id="colortext">Micronegocio</h3>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+          {% for message in messages %}
+            <div class="alert">
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              <li>{{ message }}</li>
+            </div>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
   </section>
   <section class="grid">
     <article> 
       <div class="microform">
+
         <form method="POST">
             {{ form.csrf_token }}     
               <input class="addmicro" type="text" name="name" autocomplete="off" required placeholder="agreagar micronegocio">
+              {% for error in form.name.errors %}
+                <span style="color: red;">{{ error }}</span>
+              {% endfor %}
               <button id="buttonsave" type="submit">guardar</button>
           </form>
       </div>
@@ -69,7 +87,8 @@
             <tr>
               <td>
                 <div class="card card-1">
-                  <h4 id="titlemicros">{{empresa.name}}</h4>
+                 <a class="deleteButton" href="delete/{{empresa.id}}">-</a>
+                  <h4 id="titlemicros">{{empresa.name}} </h4>
                 </div>
               </td>
             </tr>

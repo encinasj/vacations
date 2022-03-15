@@ -54,6 +54,43 @@
   margin-left: 100px;
 }
 
+.deleteButton {
+background: transparent;
+border: 1px solid #f00;
+border-radius: 2em;
+color: #f00;
+display: inline-block;
+font-size: 15px;
+height: 20px;
+width: 20px;
+line-height: 18px;
+margin-left: 270px ;
+text-align: center;
+}
+
+
+
+.alert {
+  padding: 6px;
+  background-color: #168fc7b2;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: Arial;
+  float: right;
+  font-size: 20px;
+  line-height: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.closebtn:hover {
+  color: rgb(187, 187, 187);
+}
+
 .addmicro{
   width: 100%;
   padding: 12px 150px;
@@ -62,8 +99,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  box-shadow: var(--box-shadow);
-  
+  box-shadow: var(--box-shadow); 
 }
 
 .wrapper {

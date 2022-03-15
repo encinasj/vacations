@@ -10,3 +10,5 @@ class Empresas(db.Model):
             f'id: {self.id}, '
             f'name: {self.name}'
         )
+
+

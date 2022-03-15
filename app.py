@@ -1,3 +1,4 @@
+from os import urandom
 from flask import Flask, flash, redirect, request, url_for
 from flask import render_template, request, jsonify
 from flask_migrate import Migrate
@@ -12,8 +13,7 @@ db.init_app(app)
 
 migrate = Migrate()
 migrate.init_app(app, db)
-
-app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
+app.secret_key = urandom(24)
 #se infica cual es la url que usara para la conexion a la base de datos
 #credenciales de conecction
 db_user = 'jencinas'

@@ -28,11 +28,18 @@
   color: #979595;
 }
 
+#titlemicros1{
+  text-align: center;
+  text-transform: uppercase;
+  color: #979595;
+}
+
 #titlemicros{
   text-align: center;
   text-transform: uppercase;
   color: #000000;
 }
+
 
 #buttonsave {
   background-color: #4fa8fb; /* Green */

@@ -2,16 +2,22 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
-  <link rel="icon" href="{{ url_for('static', filename='img/preparation.png') }}">
-  <link rel="stylesheet" href="static/css/style.css">
+  {% block title%}
+    <title>Vacaciones</title>
+  {% endblock title%}
+
+  {% block statics %}
+    <link rel="icon" href="{{ url_for('static', filename='img/preparation.png') }}">
+    <link rel="stylesheet" href="static/css/style.css">
+  {% endblock statics %}
 </head>
+
 <body>
 <!-- index -->
 <header class="page-header">
   <nav>
     <a href="#0" aria-label="forecastr logo" class="logo">
-      <img  width="140" height="49" src="https://cdn.logo.com/hotlink-ok/logo-social.png" alt="Logo">
+      <img  width="160" height="129" src="{{ url_for('static', filename='img/preparation.png') }}" alt="Logo">
     </a>
     <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
       <svg width="20" height="20" aria-hidden="true">
@@ -39,6 +45,7 @@
     </ul>
   </nav>
 </header>
+
 <section class="page-content">
   <section class="search-and-user">
     <h3 id="colortext">Micronegocio</h3>
@@ -54,24 +61,22 @@
         </ul>
       {% endif %}
     {% endwith %}
-
   </section>
   <section class="grid">
     <article> 
       <div class="microform">
-
         <form method="POST">
-            {{ form.csrf_token }}     
-              <input class="addmicro" type="text" name="name" autocomplete="off" required placeholder="agreagar micronegocio">
-              {% for error in form.name.errors %}
-                <span style="color: red;">{{ error }}</span>
-              {% endfor %}
-              <button id="buttonsave" type="submit">guardar</button>
-          </form>
+          {{ form.csrf_token }}
+          <input class="addmicro" type="text" name="name" autocomplete="off" required placeholder="agreagar micronegocio">
+          {% for error in form.name.errors %}
+          <span style="color: red;" >{{ error }} </span>
+          {% endfor %}
+          <button id="buttonsave" type="submit">guardar</button>
+        </form>
       </div>
     </article>
     <div>
-      <h1 id="titlemicros">Micronegocios</h1>
+      <h1 id="titlemicros1">Micronegocios</h1>
     </div>
     <br>
     <div>
@@ -83,17 +88,21 @@
           </tr>
         </thead>
         <tbody class="wrapper">
-          {%for empresa in listemp %}
-            <tr>
-              <td>
-                <div class="card card-1">
-                 <a class="deleteButton" href="delete/{{empresa.id}}">-</a>
-                  <h4 id="titlemicros">{{empresa.name}} </h4>
-                  <img class="sizeimg" src="https://www.manageengine.com/products/service-desk/itil-incident-management/images/servicedesk-plus-incident-management.png" alt="">
-                </div>
-              </td>
-            </tr>
-          {%endfor%}
+            {%for empresa in listemp %}
+              <tr>
+                <td>
+                  <div class="card card-1">
+                    <a class="deleteButton" href="delete/{{empresa.id}}">-</a>
+                    <a href="micronegocio/{{empresa.id}}">
+                      <h4 id="titlemicros">{{empresa.name}} </h4>
+                      <img class="sizeimg"
+                        src="https://www.manageengine.com/products/service-desk/itil-incident-management/images/servicedesk-plus-incident-management.png"
+                        alt="">         
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            {%endfor%}
         </tbody>
       </table>
     </div>
@@ -109,4 +118,5 @@
   <script  src="static/js/script.js"></script>
   <h4>jencinas</h4>
 </body>
+
 </html>

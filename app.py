@@ -24,7 +24,6 @@ db_port = 5432
 Full_url_db = 'postgresql://jencinas:megustanlasquesadillas23@127.0.0.1:5432/vacaciones'
 
 ENV = 'dev'
-
 if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = Full_url_db
@@ -47,10 +46,9 @@ def home():
             db.session.commit()
             flash("Micronegocio Agregado!!")
         else:
-            flash('There was a problem, Try again!...')
+            flash('whoops hubo un error!...')
             return redirect(request.url)
     return render_template('index.html', form=empresaform, listemp=listemp)
-
 
 
 @app.route("/delete/<int:id>")
@@ -62,8 +60,16 @@ def delete_company(id):
         flash("Micronegocio Eliminado!!")
         return redirect(url_for('home'))
     except:
-        flash("whoops there was a problem!! try again!..")
+        flash("whoops hubo un error!..")
         return redirect(url_for('home'))
+
+
+@app.route('/micronegocio/<int:id>', methods=['GET', 'POST'])
+def detaillcompany(id):
+    namecomp = Empresas.query.get_or_404(id)
+    
+    return render_template('micronegocio.html', id=id, name=namecomp)
+
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port='9000', debug=True)

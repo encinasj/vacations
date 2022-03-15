@@ -31,7 +31,7 @@
 #titlemicros{
   text-align: center;
   text-transform: uppercase;
-  color: #979595;
+  color: #000000;
 }
 
 #buttonsave {
@@ -85,6 +85,11 @@ text-align: center;
   line-height: 10px;
   cursor: pointer;
   transition: 0.2s;
+}
+
+.sizeimg{
+  width: 180px;
+  margin-left: 60px;
 }
 
 .closebtn:hover {

@@ -1,0 +1,10 @@
+
+<form method="POST">
+    {{ empresaform.csrf_token }}
+    <input class="addmicro" type="text" name="name" autocomplete="off" required placeholder="Agreagar Micronegocio">
+    {% for error in empresaform.name.errors %}
+        <span style="color: red;">{{ error }} </span>
+    {% endfor %}
+    <button id="buttonsave" type="submit">guardar</button>
+</form>
+

@@ -1,6 +1,14 @@
+{% extends "index.html" %}
 
 {% block title%}
-    <title>Micronegocio | {{name.name}}</title>
+  <title>Micronegocio {{name.name | upper}}</title>
 {% endblock title%}
 
+{% block urlinto %} Micronegocio/{{name.name | upper}}{% endblock urlinto %}
+{% block formcompany %}
+    {% include "employes_form.html" %}
+{% endblock formcompany %}
 
+{% block employees%}
+Colaboradores
+{% endblock employees%}

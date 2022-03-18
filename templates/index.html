@@ -3,52 +3,52 @@
 <head>
   <meta charset="UTF-8">
   {% block title%}
-    <title>Vacaciones</title>
+    <title class="tabupper" >Vacaciones</title>
   {% endblock title%}
 
-  {% block statics %}
-    <link rel="icon" href="{{ url_for('static', filename='img/preparation.png') }}">
-    <link rel="stylesheet" href="static/css/style.css">
-  {% endblock statics %}
+  <link rel="icon" href="{{ url_for('static', filename='img/preparation.png') }}"/>
+  <link rel="stylesheet"  rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
 </head>
 
 <body>
 <!-- index -->
 <header class="page-header">
-  <nav>
-    <a href="#0" aria-label="forecastr logo" class="logo">
-      <img  width="160" height="129" src="{{ url_for('static', filename='img/preparation.png') }}" alt="Logo">
-    </a>
-    <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
-      <svg width="20" height="20" aria-hidden="true">
-        <use xlink:href="#down"></use>
-      </svg>
-    </button>
-    <ul class="admin-menu">
-      <li class="menu-heading">
-        <h3>Vacaciones</h3>
-      </li>
-      <li>
-        <a href="#0">
-          <span>Micronegocio</span>
-        </a>
-      </li> 
-      <li>
-        <div class="switch">
-          <input type="checkbox" id="mode" checked>
-          <label for="mode">
-            <span></span>
-            <span>Dark</span>
-          </label>
-        </div>
-      </li>
-    </ul>
-  </nav>
+  {% block nav %}
+    <nav>
+      <a href="#0" aria-label="forecastr logo" class="logo">
+        <img  width="160" height="129" src="{{ url_for('static', filename='img/preparation.png') }}" alt="Logo">
+      </a>
+      <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
+        <svg width="20" height="20" aria-hidden="true">
+          <use xlink:href="#down"></use>
+        </svg>
+      </button>
+      <ul class="admin-menu">
+        <li class="menu-heading">
+          <h3>Vacaciones</h3>
+        </li>
+        <li>
+          <a href="{{url_for('home')}}">
+            <span>Micronegocios</span>
+          </a>
+        </li> 
+        <li>
+          <div class="switch">
+            <input type="checkbox" id="mode" checked>
+            <label for="mode">
+              <span></span>
+              <span>Dark</span>
+            </label>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  {% endblock %}
 </header>
 
 <section class="page-content">
   <section class="search-and-user">
-    <h3 id="colortext">Micronegocio</h3>
+    <h3 id="colortext">{% block urlinto %}Micronegocio{% endblock urlinto %}</h3>
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <ul class=flashes>
@@ -64,19 +64,14 @@
   </section>
   <section class="grid">
     <article> 
-      <div class="microform">
-        <form method="POST">
-          {{ form.csrf_token }}
-          <input class="addmicro" type="text" name="name" autocomplete="off" required placeholder="agreagar micronegocio">
-          {% for error in form.name.errors %}
-          <span style="color: red;" >{{ error }} </span>
-          {% endfor %}
-          <button id="buttonsave" type="submit">guardar</button>
-        </form>
-      </div>
+      {% block formcompany %}
+        <div class="microform"> 
+          {% include "company_form.html" %}
+        </div>
+      {% endblock formcompany %}
     </article>
     <div>
-      <h1 id="titlemicros1">Micronegocios</h1>
+      <h1 id="titlemicros1">{% block employees%}Micronegocios{% endblock employees%}</h1>
     </div>
     <br>
     <div>
@@ -115,7 +110,7 @@
       <h4> JEncinas</h4>
     </a>
   </footer>
-  <script  src="static/js/script.js"></script>
+  <script  src="{{ url_for('static', filename='js/script.js') }}"></script>
   <h4>jencinas</h4>
 </body>
 

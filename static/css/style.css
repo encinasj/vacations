@@ -28,6 +28,9 @@
   color: #979595;
 }
 
+.tabupper{
+  text-transform: uppercase;
+}
 #titlemicros1{
   text-align: center;
   text-transform: uppercase;
@@ -53,6 +56,19 @@
   position: relative;
   left: 590px;
   top: -55px;
+}
+#buttonsaveemp {
+  background-color: #4fa8fb; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  position: relative;
+  left: 890px;
+  top: -25px;
 }
 
 .microform {
@@ -102,6 +118,18 @@ text-align: center;
 .closebtn:hover {
   color: rgb(187, 187, 187);
 }
+
+
+.addemployee{
+  width: 310px;
+  padding: 8px 20px;
+  margin: 12px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: var(--box-shadow); 
+}
+
 
 .addmicro{
   width: 100%;

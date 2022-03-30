@@ -5,7 +5,6 @@
   {% block title%}
     <title class="tabupper" >Vacaciones</title>
   {% endblock title%}
-
   <link rel="icon" href="{{ url_for('static', filename='img/preparation.png') }}"/>
   <link rel="stylesheet"  rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
 </head>
@@ -29,7 +28,7 @@
         </li>
         <li>
           <a href="{{url_for('home')}}">
-            <span>Micronegocios</span>
+            <span>Colaboradores</span>
           </a>
         </li> 
         <li>
@@ -48,7 +47,7 @@
 
 <section class="page-content">
   <section class="search-and-user">
-    <h3 id="colortext">{% block urlinto %}Micronegocio{% endblock urlinto %}</h3>
+    <h3 id="colortext">Colaboradores</h3>
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <ul class=flashes>
@@ -64,14 +63,12 @@
   </section>
   <section class="grid">
     <article> 
-      {% block formcompany %}
         <div class="microform"> 
-          {% include "company_form.html" %}
+          {% include "employee_form.html" %}
         </div>
-      {% endblock formcompany %}
     </article>
     <div>
-      <h1 id="titlemicros1">{% block employees%}Micronegocios{% endblock employees%}</h1>
+      <h1 id="titlemicros1">{% block employees%}Colaboradores{% endblock employees%}</h1>
     </div>
     <br>
     <div>
@@ -83,13 +80,13 @@
           </tr>
         </thead>
         <tbody class="wrapper">
-            {%for empresa in listemp %}
+          {% block list%}
+            {%for employee in listemp %}
               <tr>
                 <td>
                   <div class="card card-1">
-                    <a class="deleteButton" href="delete/{{empresa.id}}">-</a>
-                    <a href="micronegocio/{{empresa.id}}">
-                      <h4 id="titlemicros">{{empresa.name}} </h4>
+                    <a class="deleteButton" href="delete/{{employee.id}}">-</a>
+                      <h4 id="titlemicros">{{employee.full_name}} </h4>
                       <img class="sizeimg"
                         src="https://www.manageengine.com/products/service-desk/itil-incident-management/images/servicedesk-plus-incident-management.png"
                         alt="">         
@@ -98,6 +95,7 @@
                 </td>
               </tr>
             {%endfor%}
+          {% endblock list%}
         </tbody>
       </table>
     </div>
@@ -110,7 +108,24 @@
       <h4> JEncinas</h4>
     </a>
   </footer>
+
+  <script>
+    const deleteButton = document.querySelectorAll('.deleteButton')
+    if(deleteButton){
+      const btnArray = Array.from(deleteButton);
+      btnArray.forEach((btn) =>{
+        btn.addEventListener('click', (e) => {
+          if(!confirm('Esta seguro que quiere eliminar este micronegocio?')){
+            e.parentElement();
+          }
+        });
+      });
+    }
+  </script>
+
   <script  src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <h4>jencinas</h4>
 </body>
 

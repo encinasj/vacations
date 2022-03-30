@@ -4,11 +4,28 @@
   <title>Micronegocio {{name.name | upper}}</title>
 {% endblock title%}
 
-{% block urlinto %} Micronegocio/{{name.name | upper}}{% endblock urlinto %}
 {% block formcompany %}
-    {% include "employes_form.html" %}
+  {% include "employes_form.html" %}
 {% endblock formcompany %}
 
 {% block employees%}
-Colaboradores
+  Colaboradores
 {% endblock employees%}
+
+{% block list%}
+  {%for employee in listemployee %}
+    {% if employee.microbusiness_id == name.id %}
+      <tr>
+        <td>
+          <div class="card card-1">
+            <a class="deleteButton" href="">-</a>
+            <a href="#">
+              <h4 id="titlemicros">{{employee.full_name}} </h4>
+              <img class="sizeimg" src="" alt="">
+            </a>
+          </div>
+        </td>
+      </tr>
+    {%endif%}
+  {%endfor%}
+{% endblock list%}

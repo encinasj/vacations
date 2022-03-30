@@ -43,20 +43,6 @@
   color: #000000;
 }
 
-
-#buttonsave {
-  background-color: #4fa8fb; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  position: relative;
-  left: 590px;
-  top: -55px;
-}
 #buttonsaveemp {
   background-color: #4fa8fb; /* Green */
   border: none;
@@ -68,13 +54,13 @@
   font-size: 16px;
   position: relative;
   left: 890px;
-  top: -25px;
+  top: -60px;
 }
 
 .microform {
   border-radius: 5px;
   padding: 70px;
-  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .deleteButton {
@@ -121,21 +107,9 @@ text-align: center;
 
 
 .addemployee{
-  width: 310px;
-  padding: 8px 20px;
-  margin: 12px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  box-shadow: var(--box-shadow); 
-}
-
-
-.addmicro{
-  width: 100%;
-  padding: 12px 150px;
-  margin: 8px 0;
-  display: inline-block;
+  width: 240px;
+  padding: 8px 10px;
+  margin: 4px 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;

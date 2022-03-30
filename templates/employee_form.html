@@ -1,0 +1,15 @@
+<form method="POST">
+    {{ employeesform.csrf_token }}
+    <input class="addemployee" type="text" name="full_name" autocomplete="off" placeholder="Nombre completo">
+    <input class="addemployee" type="date" name="admission_date" autocomplete="off" required placeholder="Fecha de ingreso">
+    <input class="addemployee" type="number" name="salary_per_day" autocomplete="off" required placeholder="Ingresa el salario diario">
+    <input class="addemployee" type="number" name="percent" autocomplete="off" required placeholder="Porcentaje">
+    <input class="addemployee" type="text" name="namecompany" autocomplete="off" required placeholder="Agreagar Micronegocio">
+    {% for error in employeesform.full_name.errors %}
+    <span style="color: red;">{{ error }} </span>
+    {% endfor %}
+    <br>
+    <br>
+    <br>
+    <button id="buttonsaveemp" type="submit">guardar</button>
+</form>

@@ -1,12 +1,10 @@
-from crypt import methods
 from os import urandom
-from flask import Flask, flash, redirect, request, url_for
-from flask import render_template, request, jsonify
+from flask import Flask, flash, redirect, request, url_for, render_template, jsonify
 from flask_migrate import Migrate
 
 from .database import db
-from .models import MicroBusiness, Employee
-from .forms import EmpresasForm, EmployeesForm
+from .models import Employee
+from .forms import EmployeesForm
 
 app = Flask(__name__)
 
@@ -18,6 +16,8 @@ app.secret_key = urandom(24)
 
 #se infica cual es la url que usara para la conexion a la base de datos
 #credenciales de conecction
+'''
+'''
 db_user = 'jencinas'
 db_pswd = 'megustanlasquesadillas23'
 db_host = '127.0.0.1'
@@ -32,10 +32,11 @@ if ENV == 'dev':
 else:
     app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = ''
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 
+#db testing
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 #conditions variables
 #days per year
@@ -58,54 +59,32 @@ days_of_vacations9 = 22
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    listemp = MicroBusiness.query.order_by('id')
-    empresa = MicroBusiness()
-    empresaform = EmpresasForm(obj=empresa)
-    if request.method == 'POST' and empresaform.validate():
-        error = None
-        if empresaform.validate_on_submit():
-            empresaform.populate_obj(empresa)
-            db.session.add(empresa)
+    listemp = Employee.query.order_by('id')
+    employee = Employee()
+    employeesform = EmployeesForm(obj=employee)
+    if request.method == 'POST' and employeesform.validate():
+        if employeesform.validate_on_submit():
+            employeesform.populate_obj(employee)
+            db.session.add(employee)
             db.session.commit()
-            flash("Micronegocio Agregado!!")
+            flash("Colaborador Agregado!!")
         else:
             flash('whoops hubo un error!...')
             return redirect(request.url)
-    return render_template('index.html', empresaform=empresaform, listemp=listemp)
+    return render_template('index.html', employeesform=employeesform, listemp=listemp)
 
 @app.route("/delete/<int:id>")
-def delete_company(id):
-    delete_to_company = MicroBusiness.query.get_or_404(id)
+def delete_employee(id):
+    delete_employee = Employee.query.get_or_404(id)
     try:
-        db.session.delete(delete_to_company)
+        db.session.delete(delete_employee)
         db.session.commit()
-        flash("Micronegocio Eliminado!!")
+        flash("Colaborador Eliminado!!")
         return redirect(url_for('home'))
     except:
         flash("whoops hubo un error!..")
         return redirect(url_for('home'))
 
-@app.route('/micronegocio/<int:id>')
-def detaillcompany(id):
-    namecomp = MicroBusiness.query.get_or_404(id)
-    employee = Employee()
-    employeeform = EmployeesForm(obj=employee)
-    return render_template('micronegocio.html', name=namecomp, employeeform=employeeform )
-
-
-@app.route('/addemployee', methods=['GET', 'POST'])
-def addemployee():
-    employee = Employee()
-    employeeform = EmployeesForm(obj=Employee)
-    if request.method == 'POST' and employeeform.validate():
-        if employeeform.validate_on_submit():
-            employeeform.populate_obj(employee)
-            db.session.add(employee)
-            db.session.commit()
-            flash('Colaborador agregado!!')
-        else:
-            flash('whoops hubo un error!...')
-            return redirect(url_for('detaillcompany'))
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port='9000', debug=True)
+    app.run(host='127.0.0.1', port='5000', debug=True)
